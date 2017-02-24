@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Copy.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="BookRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
