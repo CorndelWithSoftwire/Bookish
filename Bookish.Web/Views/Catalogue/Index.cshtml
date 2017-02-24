@@ -1,4 +1,5 @@
-﻿@model Bookish.Web.Models.CatalogueViewModel
+﻿@using Bookish.Web.Models
+@model CatalogueViewModel
 
 @{
   ViewBag.Title = "Catalogue";
@@ -6,49 +7,6 @@
 
 <h2>Library Catalogue</h2>
 
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Author(s)</th>
-        <th>ISBN</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var book in Model.Books)
-    {
-        <tr>
-            <td>@book.Title</td>
-            <td>@book.Author</td>
-            <td>@book.ISBN</td>
-        </tr>
-    }    
-    </tbody>
-</table>
+@Html.Partial("_Table")
 
-<p />
-
-<div>
-    @if (Model.Page > 1)
-    {
-        @Html.ActionLink("Previous Page", "Index", new {page = Model.Page - 1}, null)
-    }
-    
-    <b style="display:inline">Page @Model.Page of @Model.TotalPages</b>
-
-    @if (Model.Page < Model.TotalPages)
-    {
-        @Html.ActionLink("Next Page", "Index", new {page = Model.Page + 1}, null)
-    }
-</div>
-
-<div>
-    @using (Html.BeginForm("Search", "Catalogue", FormMethod.Post))
-    {
-        <fieldset>
-            @Html.Label("SearchText", "Search for:")
-            @Html.TextBox("SearchText")
-            <input type="submit" value="Search"/>
-        </fieldset>
-    }
-</div>
+@Html.Partial("_Search", new BookSearchModel())
