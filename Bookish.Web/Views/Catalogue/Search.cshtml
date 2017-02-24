@@ -1,10 +1,10 @@
-﻿@model Bookish.Web.Models.CatalogueViewModel
+﻿@model Bookish.Web.Models.CatalogueSearchViewModel
 
 @{
-  ViewBag.Title = "Catalogue";
+  ViewBag.Title = "Catalogue Search";
 }
 
-<h2>Library Catalogue</h2>
+<h2>Library Catalogue: Search for @Model.SearchCriteria.SearchText</h2>
 
 <table>
     <thead>
@@ -39,16 +39,5 @@
     @if (Model.Page < Model.TotalPages)
     {
         @Html.ActionLink("Next Page", "Index", new {page = Model.Page + 1}, null)
-    }
-</div>
-
-<div>
-    @using (Html.BeginForm("Search", "Catalogue", FormMethod.Post))
-    {
-        <fieldset>
-            @Html.Label("SearchText", "Search for:")
-            @Html.TextBox("SearchText")
-            <input type="submit" value="Search"/>
-        </fieldset>
     }
 </div>

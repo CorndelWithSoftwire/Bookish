@@ -16,6 +16,16 @@ namespace Bookish.DataAccess
       }
     }
 
+    public IEnumerable<Book> SearchBooks(string searchText)
+    {
+      using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString))
+      {
+        return db.Query<Book>(
+          "SELECT * FROM Books WHERE Title LIKE '%' + @searchText + '%' OR Author LIKE '%' + @searchText + '%'", 
+          new {searchText});
+      }
+    }
+
     public IEnumerable<Copy> GetCopiesBorrowedByUser(string user)
     {
       using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString))
@@ -30,5 +40,6 @@ namespace Bookish.DataAccess
           new {user});
       }
     }
+
   }
 }

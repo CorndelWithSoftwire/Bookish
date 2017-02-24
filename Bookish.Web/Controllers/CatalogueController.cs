@@ -21,5 +21,13 @@ namespace Bookish.Web.Controllers
 
       return View(new CatalogueViewModel(page, totalPages, pageOfBooks));
     }
+
+    [HttpPost]
+    public ActionResult Search(BookSearchModel search)
+    {
+      var matchingBooks = bookRepository.SearchBooks(search.SearchText).OrderBy(book => book.Title);
+
+      return View(new CatalogueSearchViewModel(search, 1, 1, matchingBooks));
+    }
   }
 }
