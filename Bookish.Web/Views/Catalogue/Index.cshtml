@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Bookish.DataAccess.Book>
+﻿@model Bookish.Web.Models.CatalogueViewModel
 
 @{
   ViewBag.Title = "Catalogue";
@@ -15,13 +15,29 @@
     </tr>
     </thead>
     <tbody>
-        @foreach (var book in Model.OrderBy(book => book.Title))
-        {
-            <tr>
-                <td>@book.Title</td>
-                <td>@book.Author</td>
-                <td>@book.ISBN</td>
-            </tr>
-        }    
+    @foreach (var book in Model.Books)
+    {
+        <tr>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>@book.ISBN</td>
+        </tr>
+    }    
     </tbody>
 </table>
+
+<p />
+
+<div>
+    @if (Model.Page > 1)
+    {
+        @Html.ActionLink("Previous Page", "Index", new {page = Model.Page - 1}, null)
+    }
+    
+    <b style="display:inline">Page @Model.Page of @Model.TotalPages</b>
+
+    @if (Model.Page < Model.TotalPages)
+    {
+        @Html.ActionLink("Next Page", "Index", new {page = Model.Page + 1}, null)
+    }
+</div>
