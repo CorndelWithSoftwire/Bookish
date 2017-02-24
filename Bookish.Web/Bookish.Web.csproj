@@ -202,6 +202,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UserDisplayHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BookSearchModel.cs" />
     <Compile Include="Models\CatalogueSearchViewModel.cs" />
@@ -274,6 +275,7 @@
     <Content Include="Views\Catalogue\_Table.cshtml" />
     <Content Include="Views\Catalogue\_Paging.cshtml" />
     <Content Include="Views\Catalogue\_Search.cshtml" />
+    <Content Include="Views\Catalogue\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

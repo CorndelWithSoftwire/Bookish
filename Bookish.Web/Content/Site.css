@@ -16,6 +16,13 @@
     white-space: normal;
 }
 
+/* Override the default bootstrap behaviour where labels in a table are misaligned
+   with what they're labelling
+*/
+table label {
+    margin-bottom: 0;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

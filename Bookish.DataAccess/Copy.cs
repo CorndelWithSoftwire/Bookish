@@ -8,5 +8,7 @@ namespace Bookish.DataAccess
     public string Borrower { get; set; }
     public DateTime DueDate { get; set; }
     public Book Book { get; set; }
+
+    public bool IsAvailable => Borrower == null;
   }
 }

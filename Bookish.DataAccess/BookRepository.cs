@@ -26,6 +26,16 @@ namespace Bookish.DataAccess
       }
     }
 
+    public Book GetBook(int id)
+    {
+      using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString))
+      {
+        var book = db.QuerySingle<Book>("SELECT * FROM Books WHERE Id = @id", new {id});
+        book.Copies = db.Query<Copy>("SELECT * FROM Copies WHERE BookId = @bookId", new {bookId = book.Id});
+        return book;
+      }
+    }
+
     public IEnumerable<Copy> GetCopiesBorrowedByUser(string user)
     {
       using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString))

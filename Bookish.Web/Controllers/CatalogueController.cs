@@ -30,5 +30,10 @@ namespace Bookish.Web.Controllers
 
       return View(new CatalogueSearchViewModel(search, 1, 1, matchingBooks));
     }
+
+    public ActionResult Details(int id)
+    {
+      return View(bookRepository.GetBook(id));
+    }
   }
 }

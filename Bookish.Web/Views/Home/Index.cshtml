@@ -14,6 +14,9 @@
     
     @foreach (var copy in Model)
     {
-        <p>@copy.Book.Title by @copy.Book.Author - due back @copy.DueDate.ToShortDateString()</p>
+        <p>
+            @Html.ActionLink(copy.Book.Title, "Details", "Catalogue", new {copy.Book.Id}, null) 
+            by @copy.Book.Author - due back @copy.DueDate.ToShortDateString()
+        </p>
     }
 </div>
