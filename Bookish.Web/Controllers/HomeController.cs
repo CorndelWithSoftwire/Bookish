@@ -15,14 +15,14 @@ namespace Bookish.Web.Controllers
 
     public ActionResult About()
     {
-      ViewBag.Message = "Your application description page.";
+      ViewBag.Message = "A digital library for the 21st century";
 
       return View();
     }
 
     public ActionResult Contact()
     {
-      ViewBag.Message = "Your contact page.";
+      ViewBag.Message = "Contact the Book(ish) team!";
 
       return View();
     }
