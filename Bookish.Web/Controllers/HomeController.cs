@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Bookish.Web.Controllers
 {
+  [Authorize]
   public class HomeController : Controller
   {
     public ActionResult Index()
@@ -13,6 +14,7 @@ namespace Bookish.Web.Controllers
       return View();
     }
 
+    [AllowAnonymous]
     public ActionResult About()
     {
       ViewBag.Message = "A digital library for the 21st century";
@@ -20,6 +22,7 @@ namespace Bookish.Web.Controllers
       return View();
     }
 
+    [AllowAnonymous]
     public ActionResult Contact()
     {
       ViewBag.Message = "Contact the Book(ish) team!";
