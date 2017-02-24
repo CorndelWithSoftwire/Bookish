@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Bookish.DataAccess.Book>
+
+@{
+  ViewBag.Title = "Catalogue";
+}
+
+<h2>Library Catalogue</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author(s)</th>
+        <th>ISBN</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.OrderBy(book => book.Title))
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.ISBN</td>
+            </tr>
+        }    
+    </tbody>
+</table>
