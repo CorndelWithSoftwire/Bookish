@@ -8,6 +8,7 @@ using Bookish.Web.Models;
 
 namespace Bookish.Web.Controllers
 {
+  [Authorize]
   public class CatalogueController : Controller
   {
     private readonly BookRepository bookRepository = new BookRepository();
