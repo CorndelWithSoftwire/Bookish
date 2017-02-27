@@ -37,3 +37,12 @@
         }
     </ul>
 }
+
+<h3>Barcodes for all the copies</h3>
+
+<ul>
+    @foreach (var copy in Model.Copies)
+    {
+        <li>@copy.Id</li>
+    }
+</ul>

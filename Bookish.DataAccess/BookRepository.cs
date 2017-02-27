@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using Dapper;
 
 namespace Bookish.DataAccess
@@ -51,5 +52,18 @@ namespace Bookish.DataAccess
       }
     }
 
+    public int AddBook(Book newBook, int copies)
+    {
+      using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString))
+      {
+        int bookId = db.QuerySingle<int>(
+          "INSERT INTO Books(Title, Author, ISBN) VALUES(@Title, @Author, @ISBN); SELECT SCOPE_IDENTITY()", newBook);
+
+        db.Execute("INSERT INTO Copies(BookId) VALUES(@BookId)", 
+          Enumerable.Range(1, copies).Select(_ => new {bookId}));
+
+        return bookId;
+      }
+    }
   }
 }

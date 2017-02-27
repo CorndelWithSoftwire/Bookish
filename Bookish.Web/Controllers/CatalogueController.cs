@@ -35,5 +35,23 @@ namespace Bookish.Web.Controllers
     {
       return View(bookRepository.GetBook(id));
     }
+
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Create(NewBookModel newBook)
+    {
+      if (ModelState.IsValid)
+      {
+        var newBookId = bookRepository.AddBook(newBook.AsBook(), newBook.Copies);
+        return RedirectToAction("Details", new {id = newBookId});
+      }
+
+      return View(newBook);
+    }
   }
 }
