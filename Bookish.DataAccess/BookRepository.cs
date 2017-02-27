@@ -11,15 +11,20 @@ namespace Bookish.DataAccess
   {
     public IEnumerable<Book> GetAllBooks()
     {
-      using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString))
+      using (var db = CreateSqlConnection())
       {
         return db.Query<Book>("SELECT * FROM Books");
       }
     }
 
+    private static SqlConnection CreateSqlConnection()
+    {
+      return new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString);
+    }
+
     public IEnumerable<Book> SearchBooks(string searchText)
     {
-      using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString))
+      using (var db = CreateSqlConnection())
       {
         return db.Query<Book>(
           "SELECT * FROM Books WHERE Title LIKE '%' + @searchText + '%' OR Author LIKE '%' + @searchText + '%'", 
@@ -29,7 +34,7 @@ namespace Bookish.DataAccess
 
     public Book GetBook(int id)
     {
-      using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString))
+      using (var db = CreateSqlConnection())
       {
         var book = db.QuerySingle<Book>("SELECT * FROM Books WHERE Id = @id", new {id});
         book.Copies = db.Query<Copy>("SELECT * FROM Copies WHERE BookId = @bookId", new {bookId = book.Id});
@@ -39,7 +44,7 @@ namespace Bookish.DataAccess
 
     public IEnumerable<Copy> GetCopiesBorrowedByUser(string user)
     {
-      using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString))
+      using (var db = CreateSqlConnection())
       {
         return db.Query<Copy, Book, Copy>(
           "SELECT * FROM Copies JOIN Books ON Books.Id = Copies.BookId WHERE Borrower = @user",
@@ -54,7 +59,7 @@ namespace Bookish.DataAccess
 
     public int AddBook(Book newBook, int copies)
     {
-      using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["MySqlServer"].ConnectionString))
+      using (var db = CreateSqlConnection())
       {
         int bookId = db.QuerySingle<int>(
           "INSERT INTO Books(Title, Author, ISBN) VALUES(@Title, @Author, @ISBN); SELECT SCOPE_IDENTITY()", newBook);
