@@ -48,6 +48,7 @@
     <Compile Include="Copy.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="BookRepository.cs" />
+    <Compile Include="IBookRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

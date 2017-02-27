@@ -7,7 +7,7 @@ using Dapper;
 
 namespace Bookish.DataAccess
 {
-  public class BookRepository
+  public class BookRepository : IBookRepository
   {
     public IEnumerable<Book> GetAllBooks()
     {
