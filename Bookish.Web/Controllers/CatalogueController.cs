@@ -14,11 +14,6 @@ namespace Bookish.Web.Controllers
     private readonly IBookRepository bookRepository;
     private const int PageSize = 20;
 
-    public CatalogueController()
-    {
-      bookRepository = new BookRepository();
-    }
-
     public CatalogueController(IBookRepository bookRepository)
     {
       this.bookRepository = bookRepository;
