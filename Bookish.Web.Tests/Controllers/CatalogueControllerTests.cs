@@ -14,14 +14,14 @@ namespace Bookish.Web.Tests.Controllers
     [Test]
     public void Index_ReturnsOnePage()
     {
-      var books = Enumerable.Range(1, 100).Select(i => new Book {Title = $"Book #{i}"}).ToList();
-      var repository = new StubBookRepository(books);
+      const int numberOfBooks = 100;
+      var repository = new BookListBuilder().WithNumberOfBooks(numberOfBooks).CreateBookRepository();
       var controller = new CatalogueController(repository);
 
       var viewResult = (ViewResult)controller.Index();
 
       var model = (CatalogueViewModel)viewResult.Model;
-      Assert.Less(model.Books.Count(), books.Count);
+      Assert.Less(model.Books.Count(), numberOfBooks);
     }
   }
 }
