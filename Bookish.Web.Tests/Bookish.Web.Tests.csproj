@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Controllers\CatalogueControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDoubles\BookListBuilder.cs" />
     <Compile Include="TestDoubles\StubBookRepository.cs" />
   </ItemGroup>
   <ItemGroup>
